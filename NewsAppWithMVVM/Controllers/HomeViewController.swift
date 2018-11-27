@@ -11,7 +11,9 @@ import UIKit
 class HomeViewController: UIViewController {
     @IBOutlet weak var mainNewsImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
-       
+    @IBOutlet weak var mainTitleNewsLabel: UILabel!
+    @IBOutlet weak var mainSourceNewsLabel: UILabel!
+    
     var newsListViewModel: NewsListViewModel!
     var apiManager = APIManager()
 
@@ -20,6 +22,8 @@ class HomeViewController: UIViewController {
         
         self.newsListViewModel = NewsListViewModel(apiManager: apiManager, completion: {
             self.tableView.reloadData()
+            self.mainTitleNewsLabel.text = self.newsListViewModel.news.first?.title
+            self.mainSourceNewsLabel.text = self.newsListViewModel.news.first?.author
         })
     }
 }
@@ -45,5 +49,17 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+}
+
+extension HomeViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetailNews" {
+            let destination = segue.destination as! DetailViewController
+            let selectedNews = sender as! HomeTableViewCell
+            let indexPath = tableView.indexPath(for: selectedNews)
+            let news = newsListViewModel.news[indexPath!.row]
+            destination.newsViewModel = news
+        }
     }
 }

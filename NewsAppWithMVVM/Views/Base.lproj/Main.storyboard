@@ -69,6 +69,7 @@
                                             <outlet property="labelAuthorNews" destination="gfe-Zo-85h" id="QrZ-OU-jCT"/>
                                             <outlet property="labelPostedDateNews" destination="qxk-gb-44v" id="ese-hP-rRS"/>
                                             <outlet property="labelTitleNews" destination="ws4-qA-LJL" id="cSL-da-Ww5"/>
+                                            <segue destination="zT4-Xt-S1J" kind="show" identifier="DetailNews" id="Pas-tS-rLT"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -121,12 +122,70 @@
                     </view>
                     <connections>
                         <outlet property="mainNewsImageView" destination="hah-uk-Xfl" id="bLt-CR-kRD"/>
+                        <outlet property="mainSourceNewsLabel" destination="Elw-Rp-gyR" id="e8f-eo-cjx"/>
+                        <outlet property="mainTitleNewsLabel" destination="VvD-cK-4L1" id="HRR-Vp-76n"/>
                         <outlet property="tableView" destination="r9s-Ex-pe4" id="Cwp-On-pMG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="117.39130434782609"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="ekj-os-cPM">
+            <objects>
+                <viewController id="zT4-Xt-S1J" customClass="DetailViewController" customModule="NewsAppWithMVVM" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XQK-Yi-As7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rTq-fj-qfC">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Besok, Umat Islam Peringati Maulid Nabi Muhammad SAW" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMl-BM-fVd">
+                                        <rect key="frame" x="20" y="36" width="335" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Lt-Vh-n1B">
+                                        <rect key="frame" x="20" y="85" width="335" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="mMl-BM-fVd" firstAttribute="top" secondItem="rTq-fj-qfC" secondAttribute="top" constant="36" id="H9q-zc-BNb"/>
+                                    <constraint firstItem="1Lt-Vh-n1B" firstAttribute="top" secondItem="mMl-BM-fVd" secondAttribute="bottom" constant="8" id="IvJ-7n-67i"/>
+                                    <constraint firstItem="1Lt-Vh-n1B" firstAttribute="trailing" secondItem="mMl-BM-fVd" secondAttribute="trailing" id="M2v-Ex-G68"/>
+                                    <constraint firstItem="1Lt-Vh-n1B" firstAttribute="leading" secondItem="mMl-BM-fVd" secondAttribute="leading" id="OnV-ld-9Rx"/>
+                                    <constraint firstItem="mMl-BM-fVd" firstAttribute="leading" secondItem="rTq-fj-qfC" secondAttribute="leading" constant="20" id="P5o-R9-Ntq"/>
+                                    <constraint firstAttribute="trailing" secondItem="mMl-BM-fVd" secondAttribute="trailing" constant="20" id="jaW-4d-omb"/>
+                                    <constraint firstAttribute="bottom" secondItem="1Lt-Vh-n1B" secondAttribute="bottom" id="oFF-zh-hY3"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mMl-BM-fVd" firstAttribute="leading" secondItem="bsF-Za-O5X" secondAttribute="leading" constant="20" id="1fA-fz-6Cl"/>
+                            <constraint firstItem="bsF-Za-O5X" firstAttribute="trailing" secondItem="mMl-BM-fVd" secondAttribute="trailing" constant="20" id="7gX-g8-TN8"/>
+                            <constraint firstItem="bsF-Za-O5X" firstAttribute="trailing" secondItem="rTq-fj-qfC" secondAttribute="trailing" id="CgW-On-tz1"/>
+                            <constraint firstItem="bsF-Za-O5X" firstAttribute="bottom" secondItem="rTq-fj-qfC" secondAttribute="bottom" id="UMs-sc-2AI"/>
+                            <constraint firstItem="rTq-fj-qfC" firstAttribute="leading" secondItem="bsF-Za-O5X" secondAttribute="leading" id="XoD-Ve-TzM"/>
+                            <constraint firstItem="rTq-fj-qfC" firstAttribute="top" secondItem="bsF-Za-O5X" secondAttribute="top" id="d0E-im-xSI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bsF-Za-O5X"/>
+                    </view>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="newsDescriptionLabel" destination="1Lt-Vh-n1B" id="Pzz-ka-Z3Y"/>
+                        <outlet property="newsTitleLabel" destination="mMl-BM-fVd" id="6MK-qR-QYI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eUo-hs-PQ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="880.79999999999995" y="116.49175412293854"/>
         </scene>
     </scenes>
 </document>
