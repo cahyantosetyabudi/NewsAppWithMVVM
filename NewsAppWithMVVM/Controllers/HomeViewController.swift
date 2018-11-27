@@ -11,28 +11,17 @@ import UIKit
 class HomeViewController: UIViewController {
     @IBOutlet weak var mainNewsImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
-    
-    var newsListViewModel = NewsListViewModel() {
-        didSet {
-            self.tableView.reloadData()
-        }
-    }
+       
+    var newsListViewModel: NewsListViewModel!
+    var apiManager = APIManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadNews()
-    }
-    
-    func loadNews() {
-        APIManager().getNews(completion: { news in
-            let news = news.map({ (berita) -> NewsViewModel in
-                return NewsViewModel(news: berita)
-            })
-            self.newsListViewModel = NewsListViewModel(berita: news)
+        self.newsListViewModel = NewsListViewModel(apiManager: apiManager, completion: {
+            self.tableView.reloadData()
         })
     }
-
 }
 
 extension HomeViewController: UITableViewDataSource {

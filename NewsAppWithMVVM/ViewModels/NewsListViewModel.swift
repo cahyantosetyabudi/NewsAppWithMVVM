@@ -8,12 +8,23 @@
 
 import Foundation
 
-struct NewsListViewModel {
-    var news = [NewsViewModel]()
+class NewsListViewModel {
+    var news: [NewsViewModel] = [NewsViewModel]()
+    
+    init(apiManager: APIManager, completion: @escaping () -> Void) {
+        apiManager.getNews { (berita) in
+            self.news = berita.map(NewsViewModel.init)
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
+    }
+    
+    func populateNews(_ berita: [News]) {
+        self.news = berita.map(NewsViewModel.init)
+    }
 }
 
 extension NewsListViewModel {
-    init(berita: [NewsViewModel]) {
-        self.news = berita
-    }
+    
 }
